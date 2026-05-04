@@ -16,6 +16,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Sale;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -121,9 +122,9 @@ class EditSale extends Component implements HasActions, HasSchemas
                                             $set('item_name', $item->name);
                                         }
                                     }),
-                                // Placeholder::make('item_name')
-                                //     ->label('Item Name'),
-                                // ->content(fn($get) => $get('item_name') ?? 'Select an item'),
+                                // Placeholder::make('item_name_preview')
+                                //     ->label('Item Name')
+                                //     ->content(fn($get) => $get('item_name') ?? 'Select an item'),
                                 TextInput::make('quantity')
                                     ->label('Quantity')
                                     ->numeric()
@@ -153,7 +154,7 @@ class EditSale extends Component implements HasActions, HasSchemas
                                     ->prefix('$')
                                     ->disabled(),
                             ])
-                            ->columns(5)
+                            ->columns(4)
                             ->defaultItems(0)
                             ->reorderable(false)
                             ->collapsible(),
