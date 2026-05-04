@@ -18,6 +18,7 @@ use App\Livewire\Sales\ListSales;
 use App\Livewire\Users\CreateUser;
 use App\Livewire\Users\EditUser;
 use App\Livewire\Users\ListUsers;
+use App\Models\Sale;
 use Illuminate\Support\Facades\Route;
 
 use function Pest\Laravel\get;
@@ -45,7 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //sales routes
     Route::get('/manage-sales', ListSales::class)->name('sales.index');
     Route::get('/edit-sales/{record}', EditSale::class)->name('sales.edit');
-    Route::get('/sales/{sale}/receipt', function (\App\Models\Sale $sale) {
+    Route::get('/sales/{sale}/receipt', function (Sale $sale) {
         return view('livewire.sales.receipt', compact('sale'));
     })->name('sales.receipt');
 

@@ -16,6 +16,7 @@ use Livewire\Component;
 use App\Models\Sale;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
+use Filament\Tables\Columns\TextColumn;
 
 class ListSales extends Component implements HasActions, HasSchemas, HasTable
 {
@@ -26,9 +27,24 @@ class ListSales extends Component implements HasActions, HasSchemas, HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn(): Builder => Sale::query())
+            ->query(fn(): Builder => Sale::query()->with(['customer', 'saleItems']))
             ->columns([
                 //
+                TextColumn::make('customer.name')
+                    ->sortable(),
+                TextColumn::make('saleItems.item.name')
+                    ->label('Sold Items')
+                    ->bulleted()
+                    ->limitList(2)
+                    ->expandableLimitedList(),
+                TextColumn::make('total_amount')
+                    ->money()
+                    ->sortable(),
+                TextColumn::make('discount_amount')
+                    ->money(),
+                TextColumn::make('paid_amount')
+                    ->money(),
+                TextColumn::make('paymentMethod.name'),
             ])
             ->filters([
                 //
