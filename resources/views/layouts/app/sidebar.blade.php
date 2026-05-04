@@ -25,6 +25,10 @@
                     wire:navigate>
                     {{ __('Dashboard') }}
                 </flux:sidebar.item>
+                <flux:sidebar.item icon="shopping-cart" :href="route('pos')" :current="request()->routeIs('pos')"
+                    wire:navigate>
+                    {{ __('POS') }}
+                </flux:sidebar.item>
             </flux:sidebar.group>
 
             <flux:sidebar.group :heading="__('Inventory')" class="grid">
