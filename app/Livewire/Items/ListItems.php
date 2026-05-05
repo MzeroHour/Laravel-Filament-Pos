@@ -31,8 +31,8 @@ class ListItems extends Component implements HasActions, HasSchemas, HasTable
             ->columns([
 
                 TextColumn::make('name')->label('Name')->searchable()->sortable(),
-                // TextColumn::make('quantity')->label('Quantity')->searchable()->sortable(),
                 TextColumn::make('sku')->label('SKU')->searchable()->sortable(),
+                TextColumn::make('inventory.quantity')->label('Inventory Quantity')->searchable()->sortable(),
                 TextColumn::make('price')->label('Price')->money('')->sortable(),
                 // TextColumn::make('status')->label('Status')->badge(),
                 // TextColumn::make('description')->label('Description'),
